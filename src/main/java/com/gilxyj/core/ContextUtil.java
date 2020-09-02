@@ -16,11 +16,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @Gitee https://gitee.com/gilbertxiao
  * @create: 2020-09-02 04:52
  **/
-public abstract class SpringContainer {
+public abstract class ContextUtil {
 
-    private static final ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+    private static ThreadLocal<ApplicationContext> threadLocal = new ThreadLocal<>();
 
     public static ApplicationContext getApplicationContext() {
-        return applicationContext;
+        ApplicationContext context = threadLocal.get();
+        if (context == null) {
+            context = new AnnotationConfigApplicationContext(SpringConfig.class);
+            threadLocal.set(context);
+        }
+        return context;
     }
 }

@@ -1,11 +1,9 @@
 package com.gilxyj.main;
 
 import com.gilxyj.beans.Book;
-import com.gilxyj.config.SpringConfig;
-import com.gilxyj.core.SpringContainer;
+import com.gilxyj.core.ContextUtil;
 import com.gilxyj.service.BookService;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * @program: springbatch
@@ -26,7 +24,7 @@ public class MainTest {
 
     public static void main(String[] args) throws Exception {
 
-        ApplicationContext applicationContext = SpringContainer.getApplicationContext();
+        ApplicationContext applicationContext = ContextUtil.getApplicationContext();
         BookService bookService = (BookService) applicationContext.getBean("bookService");
         //PointcutAdvisor defaultPointcutAdvisor = (PointcutAdvisor) context.getBean("defaultPointcutAdvisor");
 
